@@ -1,0 +1,198 @@
+$none: 0;
+$vendors: webkit, moz, ms, o;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+%textC {
+  text-align: center;
+}
+
+%positionA {
+  position: absolute;
+}
+
+%positionR {
+  position: relative;
+}
+
+@mixin positionA($vertical, $val1, $horizon, $val2) {
+  #{$vertical}: $val1;
+  #{$horizon}: $val2;
+}
+
+@mixin prefix($type, $val) {
+  #{$type}: #{$val};
+  @each $v in $vendors {
+    #{"-" + $v + "-" + $type}: #{$val};
+  }
+}
+
+@mixin iconSize($val) {
+  width: $val;
+  height: $val;
+}
+
+@mixin bgC($val) {
+  background: $val;
+}
+
+@mixin btn($bgc, $border) {
+  color: #fff;
+  @include bgC($bgc);
+  border-color: $border;
+}
+
+ul {
+ list-style-type: none;
+}
+
+.center-block {
+  margin: 0 auto;  
+}
+
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.btn-success {
+  @include btn(#5cb85c, #4cae4c);
+}
+
+.btn-info {
+  @include btn(#5bc0de, #46b8da);
+}
+
+.btn-warning {
+  @include btn(#f0ad4e, #eea236);
+}
+
+.content {
+  @include bgC(#81b1db);
+  padding: 50px 0;
+
+  .icon {
+    @extend %positionR;
+    width: 520px;
+    height: 600px;
+  }
+
+  .icon li {
+    @extend %positionA;
+    @include prefix(transition, (all .5s));
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.hidel {
+      @include iconSize(0!important);
+      @include prefix(transition, (all .5s));
+    }
+
+    &#selected {
+      @include positionA(top, 50%, left, 50%);
+      @include iconSize(300px);
+      @include prefix(transform, (translate(-50% ,-50%)));
+      @include prefix(transition, (all .5s));
+    }
+
+    &:first-child {
+      @include positionA(top, 50px, left, 30px);
+      @include iconSize(140px);
+    }
+
+    &:nth-child(2) {
+      @include positionA(top, 30px, left, 200px);
+      @include iconSize(160px);
+    }
+
+    &:nth-child(3) {
+      @include positionA(top, 50px, left, 380px);
+      @include iconSize(140px);
+    }
+
+    &:nth-child(4) {
+      @include positionA(top, 200px, left, 50px);
+      @include iconSize(130px);
+    }
+
+    &:nth-child(5) {
+      @include positionA(top, 200px, left, 200px);
+      @include iconSize(140px);
+    }
+
+    &:nth-child(6) {
+      @include positionA(top, 210px, left, 370px);
+      @include iconSize(150px);
+    }
+
+    &:nth-child(7) {
+      @include positionA(top, 340px, left, 20px);
+      @include iconSize(130px);
+    }
+
+    &:nth-child(8) {
+      @include positionA(top, 350px, left, 170px);
+      @include iconSize(130px);
+    }
+
+    &:nth-child(9) {
+      @include positionA(top, 375px, left, 320px);
+      @include iconSize(140px);
+    }
+
+    &:nth-child(10) {
+      @include positionA(top, 460px, left, 100px);
+      @include iconSize(100px);
+    }
+  }
+
+  .options {
+    @include prefix(transition, (all .5s));
+    opacity: 0;
+
+    li {
+      @extend %positionA;
+      @include positionA(top, 45%, left, 65%);
+      @include prefix(transform, (translate(-50%, -50%)));
+      @include prefix(transition, (all .5s));
+
+      button {
+        @extend %textC;
+        width: 110px;
+
+        a {
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .show {
+    @include prefix(transition, (all .5s));
+    opacity: 1;
+
+    li {
+      @include prefix(transition, (all .5s));
+
+      &:first-child {
+        @include positionA(top, 30%, left ,62%);
+        @include prefix(transform, rotate(-15deg));
+      }
+
+      &:last-child {
+        @include positionA(top, 55%, left ,62%);
+        @include prefix(transform, rotate(15deg));
+      }
+    }
+  }
+}
+
